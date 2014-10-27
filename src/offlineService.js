@@ -2,7 +2,7 @@
     'use strict';
     angular.module("restOffline")
         .provider("OfflineService", function() {
-            config = {
+            var config = {
                 apiUrl: "/api/",
                 apis: {},
             };
