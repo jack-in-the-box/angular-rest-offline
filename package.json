@@ -1,0 +1,29 @@
+{
+  "name": "angular-rest-offline",
+  "version": "1.0.0",
+  "description": "An angularJS module for restFull webapp offline with localStorage. Need manifest.appcache for use",
+  "main": "dist/angular-rest-offline.js",
+  "scripts": {
+    "test": "karma start ./karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jack-in-the-box/angular-rest-offline.git"
+  },
+  "keywords": [
+    "localForage",
+    "angular",
+    "appcache",
+    "angularJS",
+    "offline"
+  ],
+  "bugs": {
+    "url": "https://github.com/jack-in-the-box/angular-rest-offline/issues"
+  },
+  "author": "Aurélien Masfrand <amasfrand@jitb.fr>",
+  "contributors": [
+    "Thomas Moyse"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jack-in-the-box/angular-rest-offline"
+}
