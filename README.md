@@ -28,11 +28,23 @@ Sometimes drawing is more efficient than a lot of words
 
 Sample
 ------
+
+### Normal ressources
 ```javascript
 OfflineServiceProvider.setApiUrl("/api/");
 OfflineServiceProvider.setApis([
     {
         ressource: "ressources",
+    }
+]);
+```
+
+### Ressources with recursivity
+```javascript
+OfflineServiceProvider.setApiUrl("/api/");
+OfflineServiceProvider.setApis([
+    {
+        ressource: "recursiveRessources",
         finder: function(collection, key) {
             var self = this;
             return _.find(collection, function(item) {
