@@ -4,13 +4,13 @@
         .provider("OfflineService", function() {
             var config = {
                 apiUrl: "/api/",
-                apis: {},
+                apis: {}
             };
 
             this.setApis = function(apis) {
                 apis.forEach(function(api) {
                     config.apis[api.ressource] = {
-                        finder: api.finder || function(collection, id)  {
+                        finder: api.finder || function(collection, id) {
                             var res = false;
                             collection.some(function(e) {
                                 if (e.id === id) {
@@ -34,10 +34,10 @@
 
                 /**
                     décoder l'url pour récupérer la variable ressourceKey pour sauvegarder en localStorage
-                    et uuid qui est le deuxième 
+                    et uuid qui est le deuxième
                     Format api accepté
                     {{config.apiUrl}}/ressourcekey
-                    {{config.apiUrl}}/ressourcekey/id 
+                    {{config.apiUrl}}/ressourcekey/id
                 */
                 var getParamsForApiUrl = function(url) {
                     if (url.indexOf(config.apiUrl) !== 0) {
@@ -162,7 +162,7 @@
                                 ressourceValue = ressourceValue || [];
                                 var obj = config.apis[paramsUrl.ressourceKey].finder(ressourceValue, paramsUrl.id);
                                 if (obj) {
-                                    for (var i in data)  {
+                                    for (var i in data) {
                                         obj[i] = data[i];
                                     }
                                 } else {
@@ -210,7 +210,7 @@
                         // si statut == 0 cela signifie que l'on est sur un manifest fallback
                         if (getParamsForApiUrl(config.url) && !response.status) {
 
-                            //dans le cas normal, hors syncUp, 
+                            //dans le cas normal, hors syncUp,
                             if (response.config.method === 'GET') {
                                 response.data = getDataFromLocalStorage(paramsForApiUrl);
                             } else {
@@ -221,7 +221,7 @@
                     },
                     request: function(config) {
                         var paramsForApiUrl = getParamsForApiUrl(config.url);
-                        if (!paramsForApiUrl ||  config.method === 'GET' || config.headers.requestUuid) {
+                        if (!paramsForApiUrl || config.method === 'GET' || config.headers.requestUuid) {
                             //sort si on est dans le cas d'une methode GET ou la requete a déjà été enregistré (donc il existe déjà un requestUuid)
                             return config;
                         }
