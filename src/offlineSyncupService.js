@@ -1,7 +1,7 @@
 (function(window, angular, undefined) {
     'use strict';
     angular.module("restOffline")
-        .factory("OfflineSyncUpService", function($localForage, $http, $q) {
+        .factory("OfflineSyncUpService", function($localForage, $http) {
             /**
             Second service pour éviter une dépendance cyclique avec $http
             */
