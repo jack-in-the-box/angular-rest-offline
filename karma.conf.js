@@ -15,8 +15,13 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        'tests/karma/**/*.test.js',
-        './src/**/*.js'
+        'bower_components/angular/angular.js',
+        'bower_components/angular-localforage/dist/angular-localForage.js',
+        'bower_components/localforage/dist/localforage.js',
+        'bower_components/angular-mocks/angular-mocks.js',
+        'bower_components/angular-uuid-service/uuid-svc.js',
+        'tests/**/*.test.js',
+        'angular-rest-offline.js'
     ],
 
 

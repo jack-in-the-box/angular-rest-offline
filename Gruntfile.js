@@ -14,14 +14,14 @@ module.exports = function(grunt) {
     uglify: {
       my_target: {
         files: {
-          'dist/angular-rest-offline.min.js': ['dist/angular-rest-offline.js']
+          'angular-rest-offline.min.js': ['angular-rest-offline.js']
         }
       }
     },
     concat: {
       dist: {
         src: ['src/app.js', 'src/offlineService.js', 'src/offlineSyncupService.js'],
-        dest: 'dist/angular-rest-offline.js'
+        dest: 'angular-rest-offline.js'
       }
     },
     jshint: {
