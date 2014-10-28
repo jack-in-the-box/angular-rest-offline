@@ -175,6 +175,19 @@
                     return $localForage.setItem(paramsUrl.ressourceKey, data);
                 };
 
+                this.getDataFromRecentPromises = function(response) {
+                    var requestUuid = response.config.headers.requestUuid;
+                    if (responsePromises[requestUuid]) {
+                        response.data = responsePromises[requestUuid]
+                            .then(function(data) {
+                                return data;
+                            });
+
+                        return response;
+                    }
+                    return response;
+                };
+
                 return {
                     response: function(response) {
                         var paramsForApiUrl = getParamsForApiUrl(response.config.url);
@@ -185,11 +198,7 @@
                         //Traitement d'une URL de type API
 
                         if (response.config.method === 'GET') {
-                            if (response.data.offline) {
-                                response.data = getDataFromLocalStorage(paramsForApiUrl);
-                            } else {
-                                saveDataToLocalStorage(paramsForApiUrl, response.data);
-                            }
+                            saveDataToLocalStorage(paramsForApiUrl, response.data);
                         } else {
                             //POST PUT et DELETE
                             removeHistoryRequest(response.config.headers.requestUuid);
@@ -200,20 +209,12 @@
                     responseError: function(response) {
                         // si statut == 0 cela signifie que l'on est sur un manifest fallback
                         if (getParamsForApiUrl(config.url) && !response.status) {
-                            var requestUuid = response.config.headers.requestUuid;
 
                             //dans le cas normal, hors syncUp, 
-                            config = getHistoryRequest(requestUuid)
-                                .then(function(config) {
-                                    return config;
-                                });
-                            if (responsePromises[requestUuid]) {
-                                response.data = responsePromises[requestUuid]
-                                    .then(function(data) {
-                                        return data;
-                                    });
-
-                                return response;
+                            if (response.config.method === 'GET') {
+                                response.data = getDataFromLocalStorage(paramsForApiUrl);
+                            } else {
+                                response.data = getDataFromRecentPromises(response);
                             }
                         }
                         return $q.reject(response);

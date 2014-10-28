@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['src/**/*'],
-        tasks: ['default'],
+        tasks: ['default', 'karma'],
         options: {
           spawn: false,
         },
